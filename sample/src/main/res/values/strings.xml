@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Karoo SDK Sample</string>
+    <string name="valid">VAL.</string>
+    <string name="invalid">INV.</string>
+</resources>

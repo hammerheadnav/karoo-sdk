@@ -1,0 +1,76 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'org.jetbrains.dokka-android'
+apply plugin: 'maven-publish'
+
+def artifactId = 'karoo-sdk'
+def groupId = 'io.hammerhead'
+
+android {
+    compileSdkVersion versions.compileSdk
+
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
+        versionName versions.libraryVersion
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dokka {
+        outputFormat = 'jekyll'
+        outputDirectory = "$rootDir/docs/${versions.libraryVersion}"
+
+        packageOptions {
+            prefix = 'io.hammerhead.samplemodule'
+            suppress = true
+        }
+
+        includes = ['module.md']
+
+        samples = ["$rootDir/sample/src/main/java/io/hammerhead/samplemodule/kotlin"]
+    }
+}
+
+dependencies {
+    // api will become a transitive dependency in published package,
+    // implementation will be only used within karoo-sdk.
+    api 'com.jakewharton.timber:timber:4.7.1'
+}
+
+task sourceJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier "sources"
+}
+
+project.afterEvaluate {
+    publishing {
+        publications {
+            karooSdk(MavenPublication) {
+                setGroupId groupId
+                setArtifactId artifactId
+                version android.defaultConfig.versionName
+
+                artifact bundleReleaseAar
+                artifact sourceJar
+
+                pom.withXml {
+                    def dependenciesNode = asNode().appendNode('dependencies')
+                    configurations.api.allDependencies.each {
+                        def dependencyNode = dependenciesNode.appendNode('dependency')
+                        dependencyNode.appendNode('groupId', it.group)
+                        dependencyNode.appendNode('artifactId', it.name)
+                        dependencyNode.appendNode('version', it.version)
+                    }
+                }
+            }
+        }
+    }
+}
+

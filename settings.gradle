@@ -1,0 +1,2 @@
+include ':sample', ':karoo-sdk'
+rootProject.name = "Karoo SDK"
