@@ -15,7 +15,6 @@
  */
 package io.hammerhead.samplemodule.java.doubleridetime;
 
-import android.content.Context;
 import android.graphics.drawable.Drawable;
 
 import java.util.Arrays;
@@ -52,8 +51,8 @@ public class DoubleRideTimeDataType extends SdkDataType {
     }
 
     @Override
-    public List<Drawable> displayIcons(Context context) {
-        return Arrays.asList(context.getDrawable(R.drawable.ic_double_ride_time));
+    public List<Drawable> displayIcons() {
+        return Arrays.asList(getContext().getDrawable(R.drawable.ic_double_ride_time));
     }
 
     @Override

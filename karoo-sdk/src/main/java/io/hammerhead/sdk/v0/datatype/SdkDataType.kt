@@ -15,7 +15,6 @@
  */
 package io.hammerhead.sdk.v0.datatype
 
-import android.content.Context
 import android.graphics.drawable.Drawable
 import io.hammerhead.sdk.v0.SdkContext
 import io.hammerhead.sdk.v0.datatype.formatter.BuiltInFormatter
@@ -73,7 +72,7 @@ abstract class SdkDataType(
      * @see [dependencies]
      * @sample [io.hammerhead.samplemodule.kotlin.doubleridetime.DoubleRideTimeDataType.displayIcons]
      */
-    open fun displayIcons(context: Context): List<Drawable>? = null
+    open fun displayIcons(): List<Drawable>? = null
 
     /**
      * Optional - determines whether this data type should be included

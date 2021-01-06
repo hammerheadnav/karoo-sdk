@@ -15,7 +15,6 @@
  */
 package io.hammerhead.samplemodule.kotlin.doubleridetime
 
-import android.content.Context
 import android.graphics.drawable.Drawable
 import io.hammerhead.sample.R
 import io.hammerhead.sdk.v0.SdkContext
@@ -31,7 +30,7 @@ class DoubleRideTimeDataType(context: SdkContext) : SdkDataType(context) {
     override val typeId: String = "double-ride-time"
     override val displayName: String = "RideTimeX2"
     override val description: String = "Takes the ride time and doubles it"
-    override fun displayIcons(context: Context): List<Drawable>? {
+    override fun displayIcons(): List<Drawable>? {
         return context.getDrawable(R.drawable.ic_double_ride_time)?.let { listOf(it) }
     }
 

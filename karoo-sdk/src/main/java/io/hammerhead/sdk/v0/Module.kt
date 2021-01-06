@@ -71,19 +71,6 @@ abstract class Module(val context: SdkContext) : RideLifecycleListener {
     open val settingsIntent: Intent? = null
 
     /**
-     * Deprecated: initialize is no longer called.
-     *
-     * Migrate initialization to BroadcastReceiver for SdkContext.INTENT_INITIALIZE
-     *
-     * @see SdkContext.INTENT_INITIALIZE
-     */
-    @Deprecated(
-        "initialize is no longer called.\nMigrate initialization to BroadcastReceiver for SdkContext.INTENT_INITIALIZE"
-    )
-    open fun initialize() {
-    }
-
-    /**
      * Method for optionally creating a Post-Ride Card view
      * based on [RideDetails].
      *

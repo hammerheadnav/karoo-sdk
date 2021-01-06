@@ -1,2 +1,3 @@
 
-First release of Hammerhead Karoo SDK
+* Remove deprecated `Module::initialize`
+* Update signature of `displayIcons` to not include `Context`
