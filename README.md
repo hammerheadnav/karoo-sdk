@@ -4,7 +4,7 @@
 
 [Quick Start](https://hammerheadnav.github.io/karoo-sdk/index.html)
 
-[API Documentation](https://hammerheadnav.github.io/karoo-sdk/0.0.2/karoo-sdk/index.html)
+[API Documentation](https://hammerheadnav.github.io/karoo-sdk/0.0.3/karoo-sdk/index.html)
 
 [Jitpack Build](https://jitpack.io/#io.hammerhead/karoo-sdk)
 
