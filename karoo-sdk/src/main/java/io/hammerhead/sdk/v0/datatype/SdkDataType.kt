@@ -135,4 +135,13 @@ abstract class SdkDataType(
      * @sample [io.hammerhead.samplemodule.kotlin.appval.AppValDataType.newTransformer]
      */
     abstract fun newTransformer(): SdkTransformer
+
+    /**
+     * Optional - determines whether this data type should
+     * go idle when not updating or if the value should persist
+     * when source is gone or stops producing values.
+     *
+     * Default: false - indicating instantaneous field which becomes idle
+     */
+    open val aggregateField: Boolean = false
 }

@@ -1,3 +1,3 @@
 
-* Remove deprecated `Module::initialize`
-* Update signature of `displayIcons` to not include `Context`
+* Deprecate `Module::settingsIntent`
+* Add new override for aggregate field to `SdkDataType`

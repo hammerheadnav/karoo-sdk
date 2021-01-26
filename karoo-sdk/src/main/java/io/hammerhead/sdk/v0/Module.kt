@@ -61,13 +61,9 @@ abstract class Module(val context: SdkContext) : RideLifecycleListener {
     abstract val version: String
 
     /**
-     * Optional to set a target intent to open when
-     * settings app selects this module.
-     *
-     * Default: null - no click action
-     *
-     * @sample [io.hammerhead.samplemodule.kotlin.SampleModule.settingsIntent]
+     * Deprecated - no longer called
      */
+    @Deprecated("no longer called")
     open val settingsIntent: Intent? = null
 
     /**
