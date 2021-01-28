@@ -91,7 +91,7 @@ class KeyValueStore internal constructor(packageName: String, private val contex
         /**
          * @suppress
          */
-        private const val TOKEN = "token"
+        const val TOKEN = "token"
 
         /**
          * @suppress
