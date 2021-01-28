@@ -18,20 +18,20 @@ repositories {
 
 Add Karoo SDK dependency:
 ```
-implementation 'io.hammerhead:karoo-sdk:0.0.4'
+implementation 'io.hammerhead:karoo-sdk:0.0.5'
 ```
 
 ### Implementation
 
 #### Module
 
-The main declaration required to enable your app to use the Karoo SDK is a [Module](0.0.4/karoo-sdk/io.hammerhead.sdk.v0/-module/index.html)
+The main declaration required to enable your app to use the Karoo SDK is a [Module](0.0.5/karoo-sdk/io.hammerhead.sdk.v0/-module/index.html)
 which includes a `factory` static member variable.
 
-With a [Module](0.0.4/karoo-sdk/io.hammerhead.sdk.v0/-module/index.html) setup, you can now
-provide a list of [SdkDataType](0.0.4/karoo-sdk/io.hammerhead.sdk.v0.datatype/-sdk-data-type/index.html) and a
-[PostRideCard](0.0.4/karoo-sdk/io.hammerhead.sdk.v0.card/-post-ride-card/index.html) along with
-the basic module detail definitions for [name](0.0.4/karoo-sdk/io.hammerhead.sdk.v0/-module/name.html) and [version](0.2.4/karoo-sdk/io.hammerhead.sdk.v0/-module/version.html).
+With a [Module](0.0.5/karoo-sdk/io.hammerhead.sdk.v0/-module/index.html) setup, you can now
+provide a list of [SdkDataType](0.0.5/karoo-sdk/io.hammerhead.sdk.v0.datatype/-sdk-data-type/index.html) and a
+[PostRideCard](0.0.5/karoo-sdk/io.hammerhead.sdk.v0.card/-post-ride-card/index.html) along with
+the basic module detail definitions for [name](0.0.5/karoo-sdk/io.hammerhead.sdk.v0/-module/name.html) and [version](0.2.4/karoo-sdk/io.hammerhead.sdk.v0/-module/version.html).
 
 #### Manifest
 
@@ -45,7 +45,7 @@ the following meta data should be added to your `AndroidManifest.xml` within the
 ```
 
 where `io.hammerhead.samplemodule.kotlin.SampleModule` is replaced with the symbol within your application
-that extends [Module](0.0.4/karoo-sdk/io.hammerhead.sdk.v0/-module/index.html) and has a static member `factory` which implements the [ModuleFactoryI](0.2.4/karoo-sdk/io.hammerhead.sdk.v0/-module-factory-i/index.html) interface.
+that extends [Module](0.0.5/karoo-sdk/io.hammerhead.sdk.v0/-module/index.html) and has a static member `factory` which implements the [ModuleFactoryI](0.2.4/karoo-sdk/io.hammerhead.sdk.v0/-module-factory-i/index.html) interface.
 
 #### Proguard
 
