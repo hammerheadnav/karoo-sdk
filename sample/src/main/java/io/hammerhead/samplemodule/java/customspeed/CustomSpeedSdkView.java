@@ -21,6 +21,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.mikhaellopez.circularprogressbar.CircularProgressBar;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import io.hammerhead.sample.R;
 import io.hammerhead.sdk.v0.datatype.view.SdkView;
 
@@ -29,27 +34,40 @@ public class CustomSpeedSdkView extends SdkView {
         super(context);
     }
 
+    private static final double MAX_SPEED = 17.0; // mps
+
+    @NotNull
     @Override
-    public View createView(LayoutInflater layoutInflater, ViewGroup parent) {
+    public View createView(LayoutInflater layoutInflater, @NotNull ViewGroup parent) {
         return layoutInflater.inflate(R.layout.custom_speed_view, parent, false);
     }
 
     @Override
-    public void onUpdate(View view, double value) {
-        TextView textSpeed = view.findViewById(R.id.text_speed);
-        textSpeed.setText(getContext().getString(R.string.valid));
-        TextView numericSpeed = view.findViewById(R.id.numeric_speed);
-        numericSpeed.setVisibility(View.VISIBLE);
-        StringBuilder numericValue = new StringBuilder();
-        numericValue.append(String.format("%.2f", value));
-        numericSpeed.setText(numericValue.reverse());
+    public void onUpdate(@NotNull View view, double value, @Nullable String formattedValue) {
+        TextView statusText = view.findViewById(R.id.status_text);
+        statusText.setVisibility(View.GONE);
+        if (formattedValue != null) {
+            TextView speedText = view.findViewById(R.id.speed_text);
+            speedText.setVisibility(View.VISIBLE);
+            speedText.setText(formattedValue);
+        }
+        CircularProgressBar speedGauge = view.findViewById(R.id.speed_gauge);
+        speedGauge.setVisibility(View.VISIBLE);
+        double progressPct = (value / MAX_SPEED) * 100f;
+        if (progressPct > 100.0) {
+            progressPct = 100.0;
+        }
+        speedGauge.setProgress((float) progressPct);
     }
 
     @Override
     public void onInvalid(View view) {
-        TextView textSpeed = view.findViewById(R.id.text_speed);
-        textSpeed.setText(getContext().getString(R.string.invalid));
-        TextView numericSpeed = view.findViewById(R.id.numeric_speed);
-        numericSpeed.setVisibility(View.GONE);
+        TextView statusText = view.findViewById(R.id.status_text);
+        statusText.setVisibility(View.VISIBLE);
+        statusText.setText(getContext().getString(R.string.disconnected));
+        TextView speedText = view.findViewById(R.id.speed_text);
+        speedText.setVisibility(View.GONE);
+        CircularProgressBar speedGauge = view.findViewById(R.id.speed_gauge);
+        speedGauge.setVisibility(View.GONE);
     }
 }

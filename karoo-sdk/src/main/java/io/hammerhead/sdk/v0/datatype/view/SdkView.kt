@@ -21,6 +21,7 @@ import android.view.View
 import android.view.ViewGroup
 import io.hammerhead.sdk.v0.datatype.SdkDataType
 import io.hammerhead.sdk.v0.datatype.transformer.SdkTransformer
+import io.hammerhead.sdk.v0.datatype.formatter.SdkFormatter
 
 /**
  * Abstract class to extend the way data fields are displayed in ride.
@@ -51,12 +52,16 @@ abstract class SdkView(protected val context: Context) {
 
     /**
      * Called when the view should be updated based on the new value from output of the
-     * [SdkTransformer]
+     * [SdkTransformer].
+     *
+     * Legacy implementation for [onUpdate] without `formattedValue`.
      *
      * @param view original view created from `createView`
      * @param value from out put of transformer
      */
-    abstract fun onUpdate(view: View, value: Double)
+    @Deprecated("legacy signature", ReplaceWith("onUpdate"))
+    open fun onUpdate(view: View, value: Double) {
+    }
 
     /**
      * Called when the data is unavailable or otherwise invalid.
@@ -64,4 +69,19 @@ abstract class SdkView(protected val context: Context) {
      * @param view original view created from `createView`
      */
     abstract fun onInvalid(view: View)
+
+    /**
+     * Called when the view should be updated based on the new value from output of the
+     * [SdkTransformer] and [SdkFormatter]
+     *
+     * Preferred implementation for [onUpdate] with `formattedValue`.
+     *
+     * @param view original view created from `createView`
+     * @param value from out put of transformer
+     * @param formattedValue from out put of formatter if specified
+     */
+    open fun onUpdate(view: View, value: Double, formattedValue: String?) {
+        // If this new signature not implemented, call legacy implementation.
+        onUpdate(view, value)
+    }
 }

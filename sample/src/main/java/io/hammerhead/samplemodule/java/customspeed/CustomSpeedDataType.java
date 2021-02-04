@@ -15,6 +15,8 @@
  */
 package io.hammerhead.samplemodule.java.customspeed;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,36 +34,48 @@ public class CustomSpeedDataType extends SdkDataType {
         super(context);
     }
 
+    @NotNull
     @Override
     public String getTypeId() {
         return "custom-speed";
     }
 
+    @NotNull
     @Override
     public String getDisplayName() {
         return "Custom Speed";
     }
 
+    @NotNull
     @Override
     public String getDescription() {
         return "Shows speed in custom view";
     }
 
+    @NotNull
     @Override
     public List<Dependency> getDependencies() {
         return Arrays.asList(Dependency.SPEED);
     }
 
     @Override
+    public double getSampleValue() {
+        return 13.0;
+    }
+
+    @NotNull
+    @Override
     public SdkView newView() {
         return new CustomSpeedSdkView(getContext());
     }
 
+    @NotNull
     @Override
     public SdkFormatter newFormatter() {
-        return new BuiltInFormatter.None();
+        return new BuiltInFormatter.Numeric(1);
     }
 
+    @NotNull
     @Override
     public SdkTransformer newTransformer() {
         return new BuiltInTransformer.Identity(getContext());

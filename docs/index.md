@@ -60,3 +60,9 @@ update your `proguard-rules.pro` to include:
 ```
 where `io.hammerhead.samplemodule` is the package which contains your SDK module and
 is referenced in meta `SDK_MODULE`.
+
+#### Design Guidelines
+
+This is the kit for creating visual data fields for the Hammerhead Karoo OS. The components in this kit are the building blocks of what make a visual data field functional,  legible, and feel like an integrated part of the Karoo experience.
+
+[Figma Design Guidelines](https://www.figma.com/file/Adr23SlulPNE2RBu1VI28C/H-Visual-Data-Field-System?node-id=0%3A1)

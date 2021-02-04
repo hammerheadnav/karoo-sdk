@@ -22,3 +22,4 @@
 
 -keep class io.hammerhead.samplemodule.** { *; }
 -keep class io.hammerhead.sdk.** { *; }
+-keep class com.mikhaellopez.circularprogressbar** { *; }

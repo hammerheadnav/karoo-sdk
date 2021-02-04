@@ -15,14 +15,14 @@
  */
 package io.hammerhead.samplemodule.java;
 
-import android.content.Intent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.List;
 
 import io.hammerhead.samplemodule.java.appval.AppValDataType;
 import io.hammerhead.samplemodule.java.customspeed.CustomSpeedDataType;
-import io.hammerhead.samplemodule.java.doubleridetime.DoubleRideTimeDataType;
+import io.hammerhead.samplemodule.java.powerhr.PowerHeartRateDataType;
 import io.hammerhead.sdk.v0.Module;
 import io.hammerhead.sdk.v0.ModuleFactoryI;
 import io.hammerhead.sdk.v0.SdkContext;
@@ -34,7 +34,7 @@ import timber.log.Timber;
 public class SampleModule extends Module {
     public static ModuleFactoryI factory = new ModuleFactoryI() {
         @Override
-        public Module buildModule(SdkContext context) {
+        public Module buildModule(@NotNull SdkContext context) {
             return new SampleModule(context);
         }
     };
@@ -43,19 +43,16 @@ public class SampleModule extends Module {
         super(context);
     }
 
+    @NotNull
     @Override
     public String getName() {
         return "sample";
     }
 
+    @NotNull
     @Override
     public String getVersion() {
         return "1.0";
-    }
-
-    @Override
-    public Intent getSettingsIntent() {
-        return new Intent().setClassName("io.hammerhead.sample", "io.hammerhead.sample.DetailActivity");
     }
 
     @Override
@@ -64,17 +61,18 @@ public class SampleModule extends Module {
         return false;
     }
 
+    @NotNull
     @Override
     public List<SdkDataType> provideDataTypes() {
         return Arrays.asList(
                 new AppValDataType(getContext()),
                 new CustomSpeedDataType(getContext()),
-                new DoubleRideTimeDataType(getContext())
+                new PowerHeartRateDataType(getContext())
         );
     }
 
     @Override
-    public PostRideCard postRideCard(RideDetails details) {
+    public PostRideCard postRideCard(@NotNull RideDetails details) {
         return new RideCard(getContext(), details);
     }
 }

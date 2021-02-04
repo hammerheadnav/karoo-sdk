@@ -21,6 +21,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.jetbrains.annotations.NotNull;
+
 import io.hammerhead.sample.R;
 import io.hammerhead.sdk.v0.SdkContext;
 import io.hammerhead.sdk.v0.card.PostRideCard;
@@ -31,8 +33,9 @@ class RideCard extends PostRideCard {
         super(context, rideDetails);
     }
 
+    @NotNull
     @Override
-    protected View createView(LayoutInflater layoutInflater, ViewGroup parent) {
+    protected View createView(LayoutInflater layoutInflater, @NotNull ViewGroup parent) {
         View view = layoutInflater.inflate(R.layout.ride_card_view, parent, false);
         TextView activityName = view.findViewById(R.id.activityName);
         activityName.setText(getRideDetails().getName());

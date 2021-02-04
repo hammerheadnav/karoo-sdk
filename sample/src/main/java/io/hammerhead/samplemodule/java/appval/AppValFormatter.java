@@ -15,9 +15,12 @@
  */
 package io.hammerhead.samplemodule.java.appval;
 
+import org.jetbrains.annotations.NotNull;
+
 import io.hammerhead.sdk.v0.datatype.formatter.SdkFormatter;
 
 public class AppValFormatter extends SdkFormatter {
+    @NotNull
     @Override
     public String formatValue(double value) {
         return "AV:" + value;

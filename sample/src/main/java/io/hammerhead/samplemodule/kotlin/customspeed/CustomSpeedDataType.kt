@@ -29,8 +29,9 @@ class CustomSpeedDataType(context: SdkContext) : SdkDataType(context) {
     override val displayName: String = "Custom Speed"
     override val description: String = "Shows speed in custom view"
     override val dependencies = listOf(Dependency.SPEED)
+    override val sampleValue: Double = 13.0
 
     override fun newView(): SdkView = CustomSpeedSdkView(context)
-    override fun newFormatter(): SdkFormatter = BuiltInFormatter.None()
+    override fun newFormatter(): SdkFormatter = BuiltInFormatter.Numeric(1)
     override fun newTransformer(): SdkTransformer = BuiltInTransformer.Identity(context)
 }

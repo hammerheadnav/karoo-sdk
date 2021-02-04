@@ -30,7 +30,7 @@ class ModuleFactoryTest {
     private val mockContext = mock<Context>().apply {
         whenever(contentResolver).thenReturn(mockContentResolver)
     }
-    private val testSdkContext = SdkContext.buildModuleContext("io.test", mockContext, mock())
+    private val testSdkContext = SdkContext.buildModuleContext("io.test", mockContext, mock(), ClassLoader.getSystemClassLoader())
 
     @Test
     fun testKotlinProvider() {

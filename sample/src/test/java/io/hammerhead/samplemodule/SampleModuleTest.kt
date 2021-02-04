@@ -57,7 +57,7 @@ class SampleModuleTest(private val type: String, private val module: Module) {
         private val mockContext = mock<Context>().apply {
             whenever(contentResolver).thenReturn(mockContentResolver)
         }
-        private val testSdkContext = SdkContext.buildModuleContext("io.test", mockContext, mock())
+        private val testSdkContext = SdkContext.buildModuleContext("io.test", mockContext, mock(), ClassLoader.getSystemClassLoader())
     }
 
     @Before
@@ -71,11 +71,11 @@ class SampleModuleTest(private val type: String, private val module: Module) {
     }
 
     @Test
-    fun testDoubleRideTimeTransformer() {
+    fun testPowerHeartRateTransformer() {
         val transformer =
-            module.dataTypes.first { it.typeId == "double-ride-time" }.newTransformer()
+            module.dataTypes.first { it.typeId == "power-hr" }.newTransformer()
         assertFalse(transformer.onStart())
-        assertTrue(transformer.onPause())
+        assertFalse(transformer.onPause())
         assertFalse(transformer.onResume())
         assertFalse(transformer.onLap())
         assertFalse(transformer.onEnd())
@@ -84,21 +84,32 @@ class SampleModuleTest(private val type: String, private val module: Module) {
         val notIncludedOutput = transformer.onDependencyChange(0, mapOf())
         assertEquals(MISSING_VALUE, notIncludedOutput)
 
-        // Missing value
-        val missingOutput = transformer.onDependencyChange(
+        // Power only missing value
+        val powerMissingOutput = transformer.onDependencyChange(
             0, mapOf(
-                Dependency.RIDE_TIME to MISSING_VALUE
+                Dependency.POWER to 125.0,
+                Dependency.HEART_RATE to MISSING_VALUE
             )
         )
-        assertEquals(MISSING_VALUE, missingOutput)
+        assertEquals(MISSING_VALUE, powerMissingOutput)
+
+        // HR only missing value
+        val hrMissingOutput = transformer.onDependencyChange(
+                0, mapOf(
+                Dependency.POWER to MISSING_VALUE,
+                Dependency.HEART_RATE to 125.0
+        )
+        )
+        assertEquals(MISSING_VALUE, hrMissingOutput)
 
         // Double value
         val doubleTimeOutput = transformer.onDependencyChange(
             0, mapOf(
-                Dependency.RIDE_TIME to 15000.0
+                Dependency.POWER to 400.0,
+                Dependency.HEART_RATE to 200.0
             )
         )
-        assertEquals(30.0, doubleTimeOutput)
+        assertEquals(2.0, doubleTimeOutput)
     }
 
     @Test
@@ -143,13 +154,13 @@ class SampleModuleTest(private val type: String, private val module: Module) {
     fun builtIn() {
         val appVal = module.dataTypes.first { it.typeId == "appval" }
         val customSpeed = module.dataTypes.first { it.typeId == "custom-speed" }
-        val doubleRideTime = module.dataTypes.first { it.typeId == "double-ride-time" }
+        val powerHr = module.dataTypes.first { it.typeId == "power-hr" }
 
         assertTrue(appVal.newView() is BuiltInView.Numeric)
-        assertTrue(customSpeed.newFormatter() is BuiltInFormatter.None)
+        assertTrue(customSpeed.newFormatter() is BuiltInFormatter.Numeric)
         assertTrue(customSpeed.newTransformer() is BuiltInTransformer.Identity)
-        assertTrue(doubleRideTime.newFormatter() is BuiltInFormatter.Numeric)
-        assertTrue(doubleRideTime.newView() is BuiltInView.Numeric)
+        assertTrue(powerHr.newFormatter() is BuiltInFormatter.Numeric)
+        assertTrue(powerHr.newView() is BuiltInView.Numeric)
     }
 
     @Test

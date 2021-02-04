@@ -13,35 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.hammerhead.samplemodule.java.doubleridetime;
+package io.hammerhead.samplemodule.java.powerhr;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
 import io.hammerhead.sdk.v0.SdkContext;
 import io.hammerhead.sdk.v0.datatype.Dependency;
 import io.hammerhead.sdk.v0.datatype.transformer.SdkTransformer;
-import timber.log.Timber;
 
-public class DoubleRideTimeTransformer extends SdkTransformer {
-
-    public DoubleRideTimeTransformer(SdkContext context) {
+class PowerHeartRateTransformer extends SdkTransformer {
+    public PowerHeartRateTransformer(@NotNull SdkContext context) {
         super(context);
     }
 
     @Override
-    public boolean onPause() {
-        Timber.i("DoubleRideTimeTransformer got pause event, resend dep");
-        super.onPause();
-        return true;
-    }
-
-    @Override
-    public double onDependencyChange(long timeStamp, Map<Dependency, Double> dependencies) {
-        Double rideTime = dependencies.get(Dependency.RIDE_TIME);
-        if (rideTime == null || rideTime == MISSING_VALUE) {
+    public double onDependencyChange(long timeStamp, @NotNull Map<Dependency, Double> dependencies) {
+        Double heartRate = dependencies.get(Dependency.HEART_RATE);
+        if (heartRate == null || heartRate == MISSING_VALUE) {
             return MISSING_VALUE;
-        } else {
-            return rideTime * 2.0 / 1000.0;
         }
+        Double power = dependencies.get(Dependency.POWER);
+        if (power == null || power == MISSING_VALUE) {
+            return MISSING_VALUE;
+        }
+        return power / heartRate;
     }
 }

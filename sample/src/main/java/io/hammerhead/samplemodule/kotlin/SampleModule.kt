@@ -15,10 +15,9 @@
  */
 package io.hammerhead.samplemodule.kotlin
 
-import android.content.Intent
 import io.hammerhead.samplemodule.kotlin.appval.AppValDataType
 import io.hammerhead.samplemodule.kotlin.customspeed.CustomSpeedDataType
-import io.hammerhead.samplemodule.kotlin.doubleridetime.DoubleRideTimeDataType
+import io.hammerhead.samplemodule.kotlin.powerhr.PowerHeartRateDataType
 import io.hammerhead.sdk.v0.Module
 import io.hammerhead.sdk.v0.ModuleFactoryI
 import io.hammerhead.sdk.v0.SdkContext
@@ -30,9 +29,6 @@ import timber.log.Timber
 class SampleModule(context: SdkContext) : Module(context) {
     override val name: String = "sample"
     override val version: String = "1.0"
-    override val settingsIntent: Intent? by lazy {
-        Intent().setClassName("io.hammerhead.sample", "io.hammerhead.sample.DetailActivity")
-    }
 
     override fun onStart(): Boolean {
         Timber.i("SampleModule received ride start event")
@@ -42,7 +38,7 @@ class SampleModule(context: SdkContext) : Module(context) {
     override fun provideDataTypes(): List<SdkDataType> {
         return listOf(
             CustomSpeedDataType(context),
-            DoubleRideTimeDataType(context),
+            PowerHeartRateDataType(context),
             AppValDataType(context)
         )
     }

@@ -28,16 +28,31 @@ class CustomSpeedSdkView(context: Context) : SdkView(context) {
         return layoutInflater.inflate(R.layout.custom_speed_view, parent, false)
     }
 
-    override fun onUpdate(view: View, value: Double) {
-        view.text_speed.text = context.getString(R.string.valid)
-        view.numeric_speed.apply {
+    override fun onUpdate(view: View, value: Double, formattedValue: String?) {
+        view.status_text.visibility = View.GONE
+        formattedValue?.let {
+            view.speed_text.apply {
+                visibility = View.VISIBLE
+                text = it
+            }
+        }
+        view.speed_gauge.apply {
             visibility = View.VISIBLE
-            text = String.format("%.2f", value).reversed()
+            val progressPct = (value.coerceAtMost(MAX_SPEED) / MAX_SPEED) * 100f
+            progress = progressPct.toFloat()
         }
     }
 
     override fun onInvalid(view: View) {
-        view.text_speed.text = context.getString(R.string.invalid)
-        view.numeric_speed.visibility = View.GONE
+        view.status_text.apply {
+            text = context.getString(R.string.disconnected)
+            visibility = View.VISIBLE
+        }
+        view.speed_text.visibility = View.GONE
+        view.speed_gauge.visibility = View.GONE
+    }
+
+    companion object {
+        private const val MAX_SPEED = 17.0 // mps
     }
 }

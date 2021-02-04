@@ -13,29 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.hammerhead.samplemodule.kotlin.doubleridetime
+package io.hammerhead.samplemodule.kotlin.powerhr
 
 import io.hammerhead.sdk.v0.SdkContext
 import io.hammerhead.sdk.v0.datatype.Dependency
 import io.hammerhead.sdk.v0.datatype.transformer.SdkTransformer
-import timber.log.Timber
 
-class DoubleRideTimeTransformer(context: SdkContext) : SdkTransformer(context) {
-
-    override fun onPause(): Boolean {
-        Timber.i("DoubleRideTimeTransformer got pause event, resend dep")
-        super.onPause()
-        return true
-    }
-
+class PowerHeartRateTransformer(context: SdkContext) : SdkTransformer(context) {
     override fun onDependencyChange(
         timeStamp: Long,
         dependencies: Map<Dependency, Double>
     ): Double {
-        return dependencies[Dependency.RIDE_TIME]?.let {
-            if (it != MISSING_VALUE) {
-                (it * 2.0) / 1000.0
-            } else null
-        } ?: MISSING_VALUE
+        val heartRate = dependencies[Dependency.HEART_RATE]
+        if (heartRate == null || heartRate == MISSING_VALUE) {
+            return MISSING_VALUE
+        }
+        val power = dependencies[Dependency.POWER]
+        if (power == null || power == MISSING_VALUE) {
+            return MISSING_VALUE
+        }
+        return power / heartRate
     }
 }

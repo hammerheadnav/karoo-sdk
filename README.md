@@ -8,6 +8,8 @@
 
 [Jitpack Build](https://jitpack.io/#io.hammerhead/karoo-sdk)
 
+[Design Guidelines](https://www.figma.com/file/Adr23SlulPNE2RBu1VI28C/H-Visual-Data-Field-System?node-id=0%3A1)
+
 ## Sample App
 
 Within [sample/](sample/), a sample application with Karoo SDK integration is provided with
@@ -17,7 +19,7 @@ The sample module is provided as Java and Kotlin code, both implementing the sam
 data types:
 1. `AppVal` - Shows value from Key/Value store set in [MainActivity](sample/src/main/java/io/hammerhead/sample/MainActivity.kt).
 1. `Custom Speed` - Uses speed dependency with a custom view to display it.
-1. `RideTimeX2` - Uses a transformer to display double ride time with built-in numeric view and formatting.
+1. `Power/HR` - Uses a transformer to display ratio of Power/HR with built-in numeric view and formatting.
 
 Additionally, the sample modules (Java and Kotlin) create a simple post-ride card that show
 the activity name in a purple box.
@@ -43,4 +45,3 @@ This is a good starting point or reference if you have an existing Android app w
 ![SDK fields in editor](screenshots/pages-preview.png?raw=true "SDK fields in editor")
 ![SDK field selection](screenshots/pages-select.png?raw=true "SDK field selection")
 ![SDK post-ride card](screenshots/post-ride.png?raw=true "SDK Post-Ride Card")
-![SDK Module in Settings](screenshots/settings.png?raw=true "Module in Settings")

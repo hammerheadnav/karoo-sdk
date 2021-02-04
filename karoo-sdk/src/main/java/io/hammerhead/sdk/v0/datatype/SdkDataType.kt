@@ -27,9 +27,9 @@ import io.hammerhead.sdk.v0.datatype.view.SdkView
 /**
  * Definition of an extended data field to add to the Karoo System.
  *
- * @sample [io.hammerhead.samplemodule.kotlin.customspeed.CustomSpeedDataType]
- * @sample [io.hammerhead.samplemodule.kotlin.doubleridetime.DoubleRideTimeDataType]
  * @sample [io.hammerhead.samplemodule.kotlin.appval.AppValDataType]
+ * @sample [io.hammerhead.samplemodule.kotlin.customspeed.CustomSpeedDataType]
+ * @sample [io.hammerhead.samplemodule.kotlin.powerhr.PowerHeartRateDataType]
  */
 abstract class SdkDataType(
     /**
@@ -40,27 +40,27 @@ abstract class SdkDataType(
     /**
      * Unique type identifier for this data field.
      *
-     * @sample [io.hammerhead.samplemodule.kotlin.customspeed.CustomSpeedDataType.typeId]
-     * @sample [io.hammerhead.samplemodule.kotlin.doubleridetime.DoubleRideTimeDataType.typeId]
      * @sample [io.hammerhead.samplemodule.kotlin.appval.AppValDataType.typeId]
+     * @sample [io.hammerhead.samplemodule.kotlin.customspeed.CustomSpeedDataType.typeId]
+     * @sample [io.hammerhead.samplemodule.kotlin.powerhr.PowerHeartRateDataType.typeId]
      */
     abstract val typeId: String
 
     /**
      * Name used as a title for this data field.
      *
-     * @sample [io.hammerhead.samplemodule.kotlin.customspeed.CustomSpeedDataType.displayName]
-     * @sample [io.hammerhead.samplemodule.kotlin.doubleridetime.DoubleRideTimeDataType.displayName]
      * @sample [io.hammerhead.samplemodule.kotlin.appval.AppValDataType.displayName]
+     * @sample [io.hammerhead.samplemodule.kotlin.customspeed.CustomSpeedDataType.displayName]
+     * @sample [io.hammerhead.samplemodule.kotlin.powerhr.PowerHeartRateDataType.displayName]
      */
     abstract val displayName: String
 
     /**
      * Long description of this field.
      *
-     * @sample [io.hammerhead.samplemodule.kotlin.customspeed.CustomSpeedDataType.description]
-     * @sample [io.hammerhead.samplemodule.kotlin.doubleridetime.DoubleRideTimeDataType.description]
      * @sample [io.hammerhead.samplemodule.kotlin.appval.AppValDataType.description]
+     * @sample [io.hammerhead.samplemodule.kotlin.customspeed.CustomSpeedDataType.description]
+     * @sample [io.hammerhead.samplemodule.kotlin.powerhr.PowerHeartRateDataType.description]
      */
     abstract val description: String
 
@@ -70,7 +70,7 @@ abstract class SdkDataType(
      * Default: null - resulting in standard icon(s) based on dependencies.
      *
      * @see [dependencies]
-     * @sample [io.hammerhead.samplemodule.kotlin.doubleridetime.DoubleRideTimeDataType.displayIcons]
+     * @sample [io.hammerhead.samplemodule.kotlin.powerhr.PowerHeartRateDataType.displayIcons]
      */
     open fun displayIcons(): List<Drawable>? = null
 
@@ -95,8 +95,8 @@ abstract class SdkDataType(
     /**
      * Option value to show when showing this field in demo mode.
      *
-     * @sample [io.hammerhead.samplemodule.kotlin.doubleridetime.DoubleRideTimeDataType.sampleValue]
      * @sample [io.hammerhead.samplemodule.kotlin.appval.AppValDataType.sampleValue]
+     * @sample [io.hammerhead.samplemodule.kotlin.powerhr.PowerHeartRateDataType.sampleValue]
      */
     open val sampleValue: Double = 84.0
 
@@ -119,8 +119,9 @@ abstract class SdkDataType(
      * @see [SdkFormatter]
      * @see [BuiltInFormatter]
      *
-     * @sample [io.hammerhead.samplemodule.kotlin.doubleridetime.DoubleRideTimeDataType.newFormatter]
      * @sample [io.hammerhead.samplemodule.kotlin.appval.AppValDataType.newFormatter]
+     * @sample [io.hammerhead.samplemodule.kotlin.powerhr.PowerHeartRateDataType.newFormatter]
+     * @sample [io.hammerhead.samplemodule.kotlin.customspeed.CustomSpeedDataType.newFormatter]
      */
     abstract fun newFormatter(): SdkFormatter
 
@@ -131,8 +132,8 @@ abstract class SdkDataType(
      * @see [SdkTransformer]
      * @see [BuiltInTransformer]
      *
-     * @sample [io.hammerhead.samplemodule.kotlin.doubleridetime.DoubleRideTimeDataType.newTransformer]
      * @sample [io.hammerhead.samplemodule.kotlin.appval.AppValDataType.newTransformer]
+     * @sample [io.hammerhead.samplemodule.kotlin.powerhr.PowerHeartRateDataType.newTransformer]
      */
     abstract fun newTransformer(): SdkTransformer
 

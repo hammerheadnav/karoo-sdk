@@ -15,6 +15,8 @@
  */
 package io.hammerhead.samplemodule.java.appval;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Map;
 
 import io.hammerhead.sdk.v0.RideState;
@@ -29,7 +31,7 @@ public class AppValTransformer extends SdkTransformer {
     }
 
     @Override
-    public double onDependencyChange(long timeStamp, Map<Dependency, Double> dependencies) {
+    public double onDependencyChange(long timeStamp, @NotNull Map<Dependency, Double> dependencies) {
         if (getRideState() == RideState.RECORDING) {
             Double appVal = getContext().getKeyValueStore().getDouble("appval");
             if (appVal == null) {

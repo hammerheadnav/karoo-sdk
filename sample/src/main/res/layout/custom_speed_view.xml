@@ -1,28 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="2">
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/text_speed"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:id="@+id/status_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:gravity="center"
+        android:includeFontPadding="false"
+        android:textAllCaps="true"
+        android:textColor="@color/statusColor"
+        android:textSize="@dimen/statusSize"
+        android:visibility="gone"
+        tools:text="DISCONNECTED"
+        tools:visibility="visible" />
+
+    <com.mikhaellopez.circularprogressbar.CircularProgressBar
+        android:id="@+id/speed_gauge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_margin="10dp"
+        app:cpb_background_progressbar_color="#00000000"
+        app:cpb_background_progressbar_width="0dp"
+        app:cpb_progress_direction="to_right"
+        app:cpb_progress_max="148"
+        app:cpb_progressbar_color_end="#00DD00"
+        app:cpb_progressbar_color_start="#DD0000"
+        app:cpb_progressbar_width="14dp"
+        app:cpb_round_border="false"
+        app:cpb_start_angle="240"
+        tools:cpb_progress="100" />
+
+    <TextView
+        android:id="@+id/speed_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textAlignment="center"
         android:textColor="@color/speedColor"
-        android:textSize="@dimen/speedSize" />
-
-    <TextView
-        android:id="@+id/numeric_speed"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:textColor="#fff"
         android:textSize="@dimen/speedSize"
-        tools:text="48.5" />
+        tools:text="24.0" />
 
-</LinearLayout>
+</RelativeLayout>

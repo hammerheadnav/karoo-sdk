@@ -33,6 +33,19 @@ class SdkContext internal constructor(
     private val moduleResources: Resources
 ) : ContextWrapper(baseContext) {
     private val moduleTheme by lazy { moduleResources.newTheme() }
+    private var moduleClassLoader: ClassLoader? = null
+
+    /**
+     * @suppress
+     */
+    internal constructor(
+        sourcePackageName: String,
+        baseContext: Context,
+        moduleResources: Resources,
+        moduleClassLoader: ClassLoader
+    ) : this(sourcePackageName, baseContext, moduleResources) {
+        this.moduleClassLoader = moduleClassLoader
+    }
 
     /**
      * @suppress
@@ -43,6 +56,13 @@ class SdkContext internal constructor(
      * @suppress
      */
     override fun getResources(): Resources = moduleResources
+
+    /**
+     * @suppress
+     */
+    override fun getClassLoader(): ClassLoader {
+        return moduleClassLoader ?: super.getClassLoader()
+    }
 
     /**
      * Access the key-value storage associated with this context.
@@ -72,12 +92,14 @@ class SdkContext internal constructor(
         fun buildModuleContext(
             sourcePackageName: String,
             baseContext: Context,
-            moduleResources: Resources
+            moduleResources: Resources,
+            classLoader: ClassLoader
         ): SdkContext {
             return SdkContext(
                 sourcePackageName,
                 baseContext,
-                moduleResources
+                moduleResources,
+                classLoader
             )
         }
 

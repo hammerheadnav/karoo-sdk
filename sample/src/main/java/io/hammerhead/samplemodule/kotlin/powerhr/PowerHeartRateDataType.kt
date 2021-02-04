@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.hammerhead.samplemodule.kotlin.doubleridetime
+package io.hammerhead.samplemodule.kotlin.powerhr
 
 import android.graphics.drawable.Drawable
 import io.hammerhead.sample.R
@@ -26,19 +26,18 @@ import io.hammerhead.sdk.v0.datatype.transformer.SdkTransformer
 import io.hammerhead.sdk.v0.datatype.view.BuiltInView
 import io.hammerhead.sdk.v0.datatype.view.SdkView
 
-class DoubleRideTimeDataType(context: SdkContext) : SdkDataType(context) {
-    override val typeId: String = "double-ride-time"
-    override val displayName: String = "RideTimeX2"
-    override val description: String = "Takes the ride time and doubles it"
+class PowerHeartRateDataType(context: SdkContext) : SdkDataType(context) {
+    override val typeId: String = "power-hr"
+    override val displayName: String = "Power/HR"
+    override val description: String = "Ratio of power / heart rate"
     override fun displayIcons(): List<Drawable>? {
-        return context.getDrawable(R.drawable.ic_double_ride_time)?.let { listOf(it) }
+        return context.getDrawable(R.drawable.ic_power_hr)?.let { listOf(it) }
     }
 
-    override val summaryField: Boolean = true
-    override val dependencies = listOf(Dependency.RIDE_TIME)
-    override val sampleValue: Double = 11.0
+    override val dependencies = listOf(Dependency.HEART_RATE, Dependency.POWER)
+    override val sampleValue: Double = 1.25
 
     override fun newView(): SdkView = BuiltInView.Numeric(context)
-    override fun newFormatter(): SdkFormatter = BuiltInFormatter.Numeric(0)
-    override fun newTransformer(): SdkTransformer = DoubleRideTimeTransformer(context)
+    override fun newFormatter(): SdkFormatter = BuiltInFormatter.Numeric(2)
+    override fun newTransformer(): SdkTransformer = PowerHeartRateTransformer(context)
 }

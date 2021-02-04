@@ -15,6 +15,8 @@
  */
 package io.hammerhead.samplemodule.java.appval;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,21 +33,25 @@ public class AppValDataType extends SdkDataType {
         super(context);
     }
 
+    @NotNull
     @Override
     public String getTypeId() {
         return "appval";
     }
 
+    @NotNull
     @Override
     public String getDisplayName() {
         return "AppVal";
     }
 
+    @NotNull
     @Override
     public String getDescription() {
         return "Shows a value from app";
     }
 
+    @NotNull
     @Override
     public List<Dependency> getDependencies() {
         return Arrays.asList(Dependency.INTERVAL);
@@ -56,16 +62,19 @@ public class AppValDataType extends SdkDataType {
         return 22.0;
     }
 
+    @NotNull
     @Override
     public SdkView newView() {
         return new BuiltInView.Numeric(getContext());
     }
 
+    @NotNull
     @Override
     public SdkFormatter newFormatter() {
         return new AppValFormatter();
     }
 
+    @NotNull
     @Override
     public SdkTransformer newTransformer() {
         return new AppValTransformer(getContext());

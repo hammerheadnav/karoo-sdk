@@ -13,9 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.hammerhead.samplemodule.java.doubleridetime;
+package io.hammerhead.samplemodule.java.powerhr;
 
 import android.graphics.drawable.Drawable;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,58 +33,61 @@ import io.hammerhead.sdk.v0.datatype.transformer.SdkTransformer;
 import io.hammerhead.sdk.v0.datatype.view.BuiltInView;
 import io.hammerhead.sdk.v0.datatype.view.SdkView;
 
-public class DoubleRideTimeDataType extends SdkDataType {
-    public DoubleRideTimeDataType(SdkContext context) {
+public class PowerHeartRateDataType extends SdkDataType {
+    public PowerHeartRateDataType(@NotNull SdkContext context) {
         super(context);
     }
 
+    @NotNull
     @Override
     public String getTypeId() {
-        return "double-ride-time";
+        return "power-hr";
     }
 
+    @NotNull
     @Override
     public String getDisplayName() {
-        return "RideTimeX2";
+        return "Power/HR";
     }
 
+    @NotNull
     @Override
     public String getDescription() {
-        return "Takes the ride time and doubles it";
+        return "Ratio of power / heart rate";
     }
 
+    @Nullable
     @Override
     public List<Drawable> displayIcons() {
-        return Arrays.asList(getContext().getDrawable(R.drawable.ic_double_ride_time));
+        return Arrays.asList(getContext().getDrawable(R.drawable.ic_power_hr));
     }
 
-    @Override
-    public boolean getSummaryField() {
-        return true;
-    }
-
+    @NotNull
     @Override
     public List<Dependency> getDependencies() {
-        return Arrays.asList(Dependency.RIDE_TIME);
+        return Arrays.asList(Dependency.HEART_RATE, Dependency.POWER);
     }
 
     @Override
     public double getSampleValue() {
-        return 11.0;
+        return 1.25;
     }
 
+    @NotNull
     @Override
     public SdkView newView() {
         return new BuiltInView.Numeric(getContext());
     }
 
+    @NotNull
     @Override
     public SdkFormatter newFormatter() {
-        return new BuiltInFormatter.Numeric(0);
+        return new BuiltInFormatter.Numeric(2);
     }
 
+    @NotNull
     @Override
     public SdkTransformer newTransformer() {
-        return new DoubleRideTimeTransformer(getContext());
+        return new PowerHeartRateTransformer(getContext());
     }
 }

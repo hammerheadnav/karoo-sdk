@@ -34,7 +34,7 @@ sealed class BuiltInView(context: Context) : SdkView(context) {
     /**
      * @suppress
      */
-    override fun onUpdate(view: View, value: Double) {}
+    override fun onUpdate(view: View, value: Double, formattedValue: String?) {}
 
     /**
      * @suppress

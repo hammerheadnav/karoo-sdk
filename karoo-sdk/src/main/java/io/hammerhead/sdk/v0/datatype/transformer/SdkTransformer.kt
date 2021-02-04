@@ -25,7 +25,7 @@ import io.hammerhead.sdk.v0.datatype.Dependency
  *
  * @see [BuiltInTransformer.Identity]
  * @sample [io.hammerhead.samplemodule.kotlin.appval.AppValTransformer]
- * @sample [io.hammerhead.samplemodule.kotlin.doubleridetime.DoubleRideTimeTransformer]
+ * @sample [io.hammerhead.samplemodule.kotlin.powerhr.PowerHeartRateTransformer]
  */
 abstract class SdkTransformer(
     /**
