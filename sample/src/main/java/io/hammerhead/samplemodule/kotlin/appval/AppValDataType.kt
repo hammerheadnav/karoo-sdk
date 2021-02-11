@@ -24,13 +24,18 @@ import io.hammerhead.sdk.v0.datatype.view.BuiltInView
 import io.hammerhead.sdk.v0.datatype.view.SdkView
 
 class AppValDataType(context: SdkContext) : SdkDataType(context) {
-    override val typeId: String = "appval"
+    override val typeId: String = TYPE_ID
     override val displayName: String = "AppVal"
     override val description: String = "Shows a value from app"
     override val dependencies = listOf(Dependency.INTERVAL)
+    override val summaryField: Boolean = true
     override val sampleValue: Double = 22.0
 
     override fun newView(): SdkView = BuiltInView.Numeric(context)
     override fun newFormatter(): SdkFormatter = AppValFormatter()
     override fun newTransformer(): SdkTransformer = AppValTransformer(context)
+
+    companion object {
+        const val TYPE_ID = "appval"
+    }
 }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LineChart">
+        <attr name="strokeColor" format="color" />
+        <attr name="strokeSize" format="dimension" />
+        <attr name="fillColor" format="color" />
+    </declare-styleable>
+</resources>

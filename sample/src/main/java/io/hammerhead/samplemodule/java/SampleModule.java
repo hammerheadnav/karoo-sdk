@@ -23,11 +23,12 @@ import java.util.List;
 import io.hammerhead.samplemodule.java.appval.AppValDataType;
 import io.hammerhead.samplemodule.java.customspeed.CustomSpeedDataType;
 import io.hammerhead.samplemodule.java.powerhr.PowerHeartRateDataType;
+import io.hammerhead.samplemodule.kotlin.RideCard;
 import io.hammerhead.sdk.v0.Module;
 import io.hammerhead.sdk.v0.ModuleFactoryI;
 import io.hammerhead.sdk.v0.SdkContext;
 import io.hammerhead.sdk.v0.card.PostRideCard;
-import io.hammerhead.sdk.v0.card.RideDetails;
+import io.hammerhead.sdk.v0.card.RideDetailsI;
 import io.hammerhead.sdk.v0.datatype.SdkDataType;
 import timber.log.Timber;
 
@@ -72,7 +73,8 @@ public class SampleModule extends Module {
     }
 
     @Override
-    public PostRideCard postRideCard(@NotNull RideDetails details) {
+    public PostRideCard postRideCard(@NotNull RideDetailsI details) {
+        // Use the kotlin RideCard because it's not worth porting to Java.
         return new RideCard(getContext(), details);
     }
 }

@@ -22,7 +22,7 @@ import io.hammerhead.sdk.v0.Module
 import io.hammerhead.sdk.v0.ModuleFactoryI
 import io.hammerhead.sdk.v0.SdkContext
 import io.hammerhead.sdk.v0.card.PostRideCard
-import io.hammerhead.sdk.v0.card.RideDetails
+import io.hammerhead.sdk.v0.card.RideDetailsI
 import io.hammerhead.sdk.v0.datatype.SdkDataType
 import timber.log.Timber
 
@@ -43,7 +43,7 @@ class SampleModule(context: SdkContext) : Module(context) {
         )
     }
 
-    override fun postRideCard(details: RideDetails): PostRideCard? {
+    override fun postRideCard(details: RideDetailsI): PostRideCard? {
         return RideCard(context, details)
     }
 

@@ -16,41 +16,42 @@
 package io.hammerhead.sdk.v0.card
 
 /**
- * Details from a recorded ride.
+ * Deprecated - Details from a recorded ride.
  *
- * Can be used to show custom post-ride card with [PostRideCard].
+ * @see [RideDetailsI]
  */
+@Deprecated("no longer used", ReplaceWith("RideDetailsI"))
 data class RideDetails(
     /**
-     * Hammerhead Ride ID
+     * @suppress
      */
     val id: String,
     /**
-     * Ride name
+     * @suppress
      */
     val name: String,
     /**
-     * Ride duration in ms.
+     * @suppress
      */
     val duration: Long,
     /**
-     * Distance in meters
+     * @suppress
      */
     val distance: Double,
     /**
-     * Strava ID
+     * @suppress
      */
     val stravaId: String?,
     /**
-     * Training Peaks ID
+     * @suppress
      */
     val trainingPeaksId: String?,
     /**
-     * Komoot ID
+     * @suppress
      */
     val komootId: String?,
     /**
-     * RideWithGPS ID
+     * @suppress
      */
     val rideWithGpsId: String?
 )

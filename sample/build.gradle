@@ -9,8 +9,8 @@ android {
         applicationId "io.hammerhead.sample"
         minSdkVersion versions.minSdk
         targetSdkVersion versions.compileSdk
-        versionCode 2
-        versionName "1.0.1"
+        versionCode 3
+        versionName "1.0.2"
     }
 
     testOptions {
@@ -25,6 +25,12 @@ dependencies {
 
     // use this for published library:
 //    implementation "io.hammerhead:karoo-sdk:${versions.libraryVersion}"
+
+    // Required for use with FIT file processing in PostRideCard.
+    // If FitFileListener is not implemented, this is not needed.
+    //
+    // Downloaded from: https://developer.garmin.com/fit/download/
+    implementation files(rootProject.file('libs/fit.jar'))
 
     // Test dependencies
     testImplementation 'junit:junit:4.12'

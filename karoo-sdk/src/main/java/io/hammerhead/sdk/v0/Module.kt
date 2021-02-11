@@ -19,6 +19,7 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import io.hammerhead.sdk.v0.card.PostRideCard
 import io.hammerhead.sdk.v0.card.RideDetails
+import io.hammerhead.sdk.v0.card.RideDetailsI
 import io.hammerhead.sdk.v0.datatype.SdkDataType
 
 /**
@@ -67,12 +68,18 @@ abstract class Module(val context: SdkContext) : RideLifecycleListener {
     open val settingsIntent: Intent? = null
 
     /**
+     * Deprecated
+     */
+    @Deprecated("no longer called", ReplaceWith("RideDetailsI"))
+    open fun postRideCard(details: RideDetails): PostRideCard? = null
+
+    /**
      * Method for optionally creating a Post-Ride Card view
-     * based on [RideDetails].
+     * based on [RideDetailsI].
      *
      * Default: null - no card is created
      */
-    open fun postRideCard(details: RideDetails): PostRideCard? = null
+    open fun postRideCard(details: RideDetailsI): PostRideCard? = null
 
     /**
      * Method for constructing which SDK data types

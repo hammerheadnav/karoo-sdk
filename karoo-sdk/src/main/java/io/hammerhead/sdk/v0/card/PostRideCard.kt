@@ -31,10 +31,17 @@ abstract class PostRideCard(
      */
     protected val context: SdkContext,
     /**
-     * Details for the ride card
+     * Deprecated - use [rideDetailsI]
      */
-    protected val rideDetails: RideDetails
+    @Deprecated("legacy member", ReplaceWith("rideDetailsI"))
+    protected val rideDetails: RideDetails?
 ) {
+    protected lateinit var rideDetailsI: RideDetailsI
+
+    constructor(context: SdkContext, rideDetailsI: RideDetailsI) : this(context, null) {
+        this.rideDetailsI = rideDetailsI
+    }
+
     /**
      * @suppress
      */
@@ -45,7 +52,7 @@ abstract class PostRideCard(
 
     /**
      * Called to inflate the layout or manually create the view
-     * required for this card to show the [rideDetails].
+     * required for this card to show the [rideDetailsI].
      *
      * @param layoutInflater to be used for calls to [LayoutInflater.inflate] to ensure
      * access to resources from module's containing APK

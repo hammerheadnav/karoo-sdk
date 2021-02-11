@@ -1,31 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/ride_card_background"
-    android:padding="10dp">
+    android:layout_height="match_parent"
+    android:background="@drawable/ride_card_background">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/finalAppVal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#DDD"
+        android:layout_above="@id/rideName"
+        android:layout_centerHorizontal="true"
+        android:paddingHorizontal="10dp"
+        android:paddingTop="10dp"
         android:textAllCaps="true"
-        android:textSize="16sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="Sample SDK Card" />
+        android:textColor="#DDD"
+        android:textSize="18sp"
+        tools:text="AV:22" />
 
     <TextView
-        android:id="@+id/activityName"
+        android:id="@+id/rideName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/title"
+        android:layout_centerInParent="true"
+        android:paddingHorizontal="10dp"
+        android:paddingBottom="10dp"
+        android:textAlignment="center"
         android:textColor="#fff"
         android:textSize="24sp"
         android:textStyle="bold"
         tools:text="Activity" />
+
+    <io.hammerhead.samplemodule.kotlin.LineChart
+        android:id="@+id/elevationBackground"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:translationZ="-1dp"
+        app:fillColor="@color/colorAccentDark"
+        app:strokeColor="@color/colorAccent"
+        app:strokeSize="1dp" />
 
 </RelativeLayout>

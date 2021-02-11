@@ -77,9 +77,9 @@ abstract class SdkDataType(
     /**
      * Optional - determines whether this data type should be included
      * in ride summary. This should only be set to true for data types
-     * whose last value should be shown in the ride-review screen.
+     * whose last value should be stored with the recorded activity.
      *
-     * Default: false - not shown in ride-review
+     * Default: false - do not include
      */
     open val summaryField: Boolean = false
 
