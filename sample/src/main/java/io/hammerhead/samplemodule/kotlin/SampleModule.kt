@@ -15,6 +15,7 @@
  */
 package io.hammerhead.samplemodule.kotlin
 
+import android.util.Log
 import io.hammerhead.samplemodule.kotlin.appval.AppValDataType
 import io.hammerhead.samplemodule.kotlin.customspeed.CustomSpeedDataType
 import io.hammerhead.samplemodule.kotlin.powerhr.PowerHeartRateDataType
@@ -36,6 +37,7 @@ class SampleModule(context: SdkContext) : Module(context) {
     }
 
     override fun provideDataTypes(): List<SdkDataType> {
+        Timber.i("provideDataTypes() called")
         return listOf(
             CustomSpeedDataType(context),
             PowerHeartRateDataType(context),
@@ -44,13 +46,22 @@ class SampleModule(context: SdkContext) : Module(context) {
     }
 
     override fun postRideCard(details: RideDetailsI): PostRideCard? {
+        Timber.i("postRideCard() called")
         return RideCard(context, details)
     }
 
     companion object {
+        init {
+            Timber.plant(object : Timber.Tree() {
+                override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
+                    Log.println(priority, "SampleModule", t?.message ?: message)
+                }
+            })
+        }
         @JvmField
         val factory = object : ModuleFactoryI {
             override fun buildModule(context: SdkContext): Module {
+                Timber.i("buildModule() called from ${context.packageName}")
                 return SampleModule(context)
             }
         }
